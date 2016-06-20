@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/webhook', webhook);
-app.use('/check', dokkucheck);
+app.use('/-/webhook', webhook);
+app.use('/-/check', dokkucheck);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
