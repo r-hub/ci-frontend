@@ -6,7 +6,7 @@ router.post('/', function(req, res) {
     queue_job(req.body)
     res.set('Content-Type', 'application/json')
 	.set(201)
-	.send('{ status: "OK" }');
+	.send('{ "status": "OK" }');
 });
 
 module.exports = router;
