@@ -1,0 +1,32 @@
+{{< layout }}{{$ content }}
+
+<div class="row">
+<div class="col-sm-3"></div>
+<div class="col-sm-8">
+
+  <div class="row"><p><h2>{{ repo }}</h2></p></div>
+
+  <div class="row">
+
+    {{# builds }}
+    <p><div class="panel panel-success">
+      <div class="panel-heading">
+	<h3 class="panel-title">{{ message }}</h3>
+      </div>
+      <div class="panel-body"><div class="row">
+	  <div class="col-md-6">
+	    <p>{{ committed_at }} by {{ author_name }}</p>
+	  </div>
+	  <div class="col-md-6 text-right">
+	    {{branch}} {{ sha }}
+	  </div>
+      </div></div>
+    </div></p>
+    {{/ builds }}
+
+  </div>
+
+</div>
+</div>
+
+{{/ content }}{{/ layout }}

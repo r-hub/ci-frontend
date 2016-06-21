@@ -4,16 +4,27 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var gzipStatic = require('connect-gzip-static');
 
 var webhook = require('./routes/webhook');
 var jenkins = require('./routes/jenkins');
 var dokkucheck = require('./routes/check');
+var web = require('./routes/web');
+var test = require('./routes/test');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine('hjs', require('hogan-express'));
 app.set('view engine', 'hjs');
+app.set('partials', {
+    'layout': 'layout',
+    'header': 'header',
+    'navbar': 'navbar',
+    'ie7notice': 'ie7notice',
+    'footer': 'footer'
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -21,11 +32,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(gzipStatic(path.join(__dirname, 'public')));
 
 app.use('/-/webhook', webhook);
 app.use('/-/jenkins', jenkins);
 app.use('/-/check', dokkucheck);
+app.use('/-/test', test);
+app.use('/', web);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
