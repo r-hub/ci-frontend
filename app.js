@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var webhook = require('./routes/webhook');
+var jenkins = require('./routes/jenkins');
 var dokkucheck = require('./routes/check');
 
 var app = express();
@@ -23,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/-/webhook', webhook);
+app.use('/-/jenkins', jenkins);
 app.use('/-/check', dokkucheck);
 
 // catch 404 and forward to error handler
