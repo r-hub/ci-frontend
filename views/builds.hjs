@@ -9,7 +9,7 @@
   <div class="row">
 
     {{# builds }}
-    <p><div class="panel panel-success">
+    <p><div class="panel {{ panelclass }}">
       <div class="panel-heading">
 	<h3 class="panel-title">{{ message }}</h3>
       </div>
