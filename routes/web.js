@@ -20,7 +20,7 @@ router.get(new RegExp(re_repo), function(req, res, next) {
 	console.log(builds);
 	res.render(
 	    'builds',
-	    { 'repo': user + '/' + repo, 'builds': builds }
+	    { 'user': user, 'repo': repo, 'builds': builds }
 	);
     })
 });

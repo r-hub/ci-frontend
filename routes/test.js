@@ -37,7 +37,9 @@ router.get("/builds", function(req, res) {
 	  status: [ 'success' ] }
     ];
 
-    res.render('builds', { 'repo': 'r-hub/citest', 'builds': builds });
+    res.render('builds', { 'user': 'r-hub',
+			   'repo': 'citest',
+			   'builds': builds });
 });
 
 module.exports = router;
