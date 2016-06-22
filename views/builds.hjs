@@ -22,7 +22,7 @@
 	    <p>{{ committed_at_ago }} by {{ author_name }}</p>
 	  </div>
 	  <div class="col-md-6 text-right">
-	    {{branch}} {{ sha }}
+	    {{branch}} <code>{{ sha7 }}</code>
 	  </div>
       </div></div>
     </div></p>
