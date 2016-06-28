@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var queue_job = require('../lib/queue-job');
 
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next) {
+
+    // Drop non-push events
+    var event = req.get('X-GitHub-Event');
+    if (event !== 'push') { return next(); }
+
     queue_job(req.body)
     res.set('Content-Type', 'application/json')
 	.set(201)
